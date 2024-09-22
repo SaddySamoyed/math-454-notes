@@ -1,0 +1,186 @@
+\providecommand{\BibLatexMode}[1]{}
+\providecommand{\BibTexMode}[1]{#1}
+
+\providecommand{\remove}[1]{}%
+
+\ifx\UseBibLatex\undefined%
+  \renewcommand{\BibLatexMode}[1]{}
+  \renewcommand{\BibTexMode}[1]{#1}
+\else
+  \renewcommand{\BibLatexMode}[1]{#1}
+  \renewcommand{\BibTexMode}[1]{}
+\fi
+
+%-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@----------------------------------------
+% Biblatex stuff
+%-----------------------------------------------------------------------
+
+
+\BibLatexMode{%
+
+   \@ifpackageloaded{biblatex}{}%
+   {%
+      %\usepackage[bibencoding=ascii,style=alphabetic,backend=biber]{biblatex}%
+      \usepackage[bibencoding=utf8,style=alphabetic,backend=biber]{biblatex}%
+%      \usepackage[bibencoding=ascii,style=alphabetic,backend=bibtex]{biblatex}%
+   }%
+   \ExecuteBibliographyOptions{%
+      maxnames = 40,%
+      maxalphanames = 4,%
+      maxcitenames = 3,%
+      minalphanames = 3,%
+      minnames = 1,%
+      % firstinits = true,%
+      giveninits = true,%
+      doi = false,%
+      url = false,%
+      isbn = false%
+   }
+   
+
+   \renewbibmacro{in:}{}
+
+   \AtEveryBibitem{%
+      \ifentrytype{inproceedings}{%
+         \clearname{editor}%
+         \clearname{editor}%
+         \clearlist{editor}%
+         \clearfield{editor}%
+         \clearlist{publisher}%
+         \clearfield{series}%
+         \clearlist{location}%
+         %\clearfield{editor}%
+         \clearfield{publisher}%
+%         \clearfield{series}%
+      }{}%
+      \ifentrytype{book}{%
+         \clearname{publisher}%
+      }{}%
+   }%
+   % For fullcite clearing...
+   \AtEveryCitekey{%
+      \ifentrytype{inproceedings}{%
+         \clearlist{publisher}%
+%         \clearfield{publisher}%
+%         \clearname{publisher}%
+      }{}%
+      \clearname{editor}%
+      % \clearlist{publisher}%
+      \clearlist{location}%
+   }%
+   \DeclareFieldFormat[inproceedings]{date}{}%
+   \DeclareFieldFormat[inproceedings]{pages}{#1, \printfield{year}}
+   \DeclareFieldFormat[inproceedings]{booktitle}{\mkbibemph{#1,\nopunct}}
+   
+   
+\renewcommand*{\bibpagespunct}{\addspace}
+\DeclareFieldFormat{journaltitle}{\mkbibemph{#1}\isdot}
+   
+   \DeclareFieldFormat[article]{number}{\mkbibparens{#1}}%
+   \DeclareFieldFormat[article]{date}{}%
+   \DeclareFieldFormat[article]{pages}{#1, \printfield{year}}
+   \DeclareFieldFormat[article]{issue}{\nopunct#1}%
+   \renewbibmacro*{issue+date}{%
+      \iffieldundef{issue}{}%
+      {%
+         \printtext{\unspace}%
+         (\printfield{issue})%
+      }%
+      \iffieldundef{pages}%
+      {\addcomma%
+         \printfield{year}}%
+      {}%
+   }%
+   
+   \renewcommand{\bibpagespunct}{%
+      \ifentrytype{article}{\addcolon}{\addcomma}\space%
+   }
+   
+   \DeclareFieldFormat[article]{titlecase}{\MakeSentenceCase{#1}}
+   \DeclareFieldFormat[inproceedings]{titlecase}{\MakeSentenceCase{#1}}
+   \DeclareFieldFormat[incollection]{titlecase}{\MakeSentenceCase{#1}}
+   \DeclareFieldFormat[book]{titlecase}{\MakeSentenceCase{#1}}
+   
+   \renewbibmacro*{journal}{%
+      \iffieldundef{journaltitle} {} {\printtext[journaltitle]{%
+            \printfield[myplain]{journaltitle}%
+            \setunit{\subtitlepunct}%
+            \printfield[myplain]{journalsubtitle}}}}
+   \DeclareFieldFormat{myplain}{#1}
+   
+   
+   % ----------------------------------------------------------
+   % In proceedings: Keep conference name capialized
+   % ----------------------------------------------------------
+   
+   \renewbibmacro*{booktitle}{%
+      \ifboolexpr{ test {\iffieldundef{booktitle}} and test
+         {\iffieldundef{booksubtitle}} } {} {\printtext[booktitle]{%
+            \printfield[myplain]{booktitle}%
+            \setunit{\subtitlepunct}%
+            \printfield[myplain]{booksubtitle}}%
+         \newunit}%
+      \printfield{booktitleaddon}}
+   
+   % ----------------------------------------------------------
+   % ... but lowercase all other titles
+   
+   \DeclareFieldFormat[inproceedings]{titlecase}{\MakeSentenceCase{#1}}
+   
+   
+   % No dot before number of articles
+   \renewbibmacro*{volume+number+eid}{%
+      \setunit*{\addcomma\addspace}%
+      \printfield{volume}%
+      %\setunit*{\addspace}%
+      \printfield{number}%
+      \setunit{\addcomma\space}%
+      \printfield{eid}%
+   }
+   
+   \ExecuteBibliographyOptions{doi=false}
+   \ExecuteBibliographyOptions{url=false}
+   \newbibmacro{string+doi}[1]{%
+      \iffieldundef{doi}{%
+         \iffieldundef{url}{%
+            #1%
+         }{%
+            \href{\thefield{url}}{#1}%
+         }%
+      }{%
+         \href{http://dx.doi.org/\thefield{doi}}{#1}}%
+   }%
+   \DeclareFieldFormat*{title}{\usebibmacro{string+doi}{\mkbibemph{#1}}}
+
+
+   \renewcommand*{\multicitedelim}{\addcomma\space}
+
+   %%%% Titles of articles, etc should not be emphasized....
+   \DeclareFieldFormat[inproceedings]{title}{\usebibmacro{string+doi}{{#1}}}
+   \DeclareFieldFormat[article]{title}{\usebibmacro{string+doi}{{#1}}}
+   \DeclareFieldFormat[incollection]{title}{\usebibmacro{string+doi}{{#1}}}
+
+   %%% Book titles should keep capitalization...
+   \DeclareFieldFormat[book]{titlecase}{{#1}}
+}%
+\remove{%
+}
+
+\BibLatexMode{%
+   \DeclareCiteCommand{\tcite}%
+   {\usebibmacro{prenote}}%
+   {\usebibmacro{citeindex}%
+      \usebibmacro{cite}}%
+   {\multicitedelim}%
+   {\usebibmacro{postnote}%
+   }
+}
+\BibTexMode{%
+   \newcomamnd{\tcite}[1]{\cite{#1}}
+}
+
+
+% -----------------------------------------------------------------------
+% Biblatex stuff - end
+%-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@----------------------------------------
+

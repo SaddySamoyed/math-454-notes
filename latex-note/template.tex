@@ -1,0 +1,350 @@
+%%--------------------------------------------------------
+%% example.tex
+%%
+%%--------------------------------------------------------
+\documentclass[12pt]{article}
+\input{prefix}%
+\BibLatexMode{%
+   \bibliography{template}
+}
+
+\begin{document}
+
+\title{Math 454: Boundary problems for Partial Differential Equations}
+
+\author{%
+   Qiulin Fan%
+}
+
+\date{2024/9}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{STYLE}
+\subsection{A subsection}
+以下为本文件的 style。如果您正阅读此笔记请忽略它，因为这是作者防止自己忘记设置的，，
+\begin{defn}
+\deflab{FQL}%
+FQL
+\\ \emphi{FQL} 是此 note 的作者.
+\end{defn}
+\begin{lemma}
+    这是一个 Lemma.
+\end{lemma}
+\begin{theorem}
+\thmlab{FQL's Theorem}
+FQL's Theorem.
+\\  这是一个 Theorem.
+\end{theorem}
+\begin{proof}
+    无需证明.
+\end{proof}
+\begin{equation}
+    \frac{\partial{u}}{\partial{x_1}} + \frac{\partial^2{u}}{\partial{x_2}} = 114514u
+\end{equation}
+\paragraph{A Paragraph}
+这是一个 Paragraph.
+\fql{注意到这是显然的.}
+\ycy{注意到这是trivial的.}
+\defref{FQL} and \thmref{FQL's Theorem} 是这个 Note 中最重要的部分.
+
+以下为一个 CompactEnum.
+\begin{compactenumI}
+    \item Enum1
+    \item Enum2
+\end{compactenumI}
+继续 Enum:
+\begin{compactenumI}[resume]
+    \smallskip%
+    \item Enum3 continued
+\end{compactenumI}
+
+
+
+\section{PDE 以及 Linear PDE 的定义}
+一个微分方程，不论是 ODE 还是 PDE，求解的是满足某个涉及微分运算的等式的函数的集合。PDE 和 ODE 的区别就在于 ODE 把满足这个等是的函数限制在了一元函数中，因而等式中使用微分算子；而 PDE 则不限制函数的变量数量，可以有任意有限个自变量，因此等式中使用偏微分算子.
+\begin{defn}
+    \deflab{PDE}
+    PDE:
+    \\
+    一个 PDE 就是如下形式的一个等式，其中的变量为 $u = f(x_1,  \cdots, x_n)$:
+    $$
+    \\F(u, x_1, x_2, \ldots, x_n, \frac{\partial u}{\partial x_1}, \frac{\partial u}{\partial x_2}, \ldots, \frac{\partial u}{\partial x_n}, \frac{\partial^2 u}{\partial x_1 ^ 2}, \frac{\partial^2 u}{\partial x_1 x_2 }, \cdots) = 0
+    $$
+    其中，F 是关于(1) $u$,(2) $u$ 的所有自变量，以及(3) $u$ 对任意数量的自变量的任意 order 的 partial derivatives 的函数.
+    我们可以把这个 PDE 简写为 $F[u] = 0$
+\end{defn}
+
+\begin{defn}
+    \deflab{order of PDE}
+    一个 PDE 的 order 就是它其中包含的 partial derivatives 的最高 order.
+\end{defn}
+
+\begin{defn}
+    \deflab{Linear PDE}
+    Linear PDE:
+    \\
+    如果 PDE $F[u] = F(u, x_1, x_2, \ldots, x_n, \frac{\partial u}{\partial x_1}, \frac{\partial u}{\partial x_2}, \ldots, \frac{\partial u}{\partial x_n}, \frac{\partial^2 u}{\partial x_1 ^ 2}, \frac{\partial^2 u}{\partial x_1 x_2 }, \cdots) = 0$ 
+    满足：
+    \\$F$ 是 $u, \frac{\partial u}{\partial x_1}, \frac{\partial u}{\partial x_2}, \ldots, \frac{\partial u}{\partial x_n}, \frac{\partial^2 u}{\partial x_1 ^ 2}, \frac{\partial^2 u}{\partial x_1 x_2 }, \cdots$ 的 linear function (\textbf{即对未知函数 $u$ 以及 $u$ 的所有偏导数 linear})，那么就称 $F$ 是一个 \textbf{Linear PDE}.
+    \\ 也就是说对于任意 $u_1 = f_1(x_1, \cdots, x_n)$ 和 $u_2 = f_2(x_1, \cdots, x_n)$ 以及 const $c$，$$F[u_1 + u_2] = F[u_1] + F[u_2] \; , F[cu] = cF[u]$$
+    因而显然 \textbf{一个 Linear PDE 一定是如下形式的一个等式}，其中的变量为 $u = f(x_1,  \cdots, c_n)$:
+    $$
+        \sum_{1 \leq |\alpha| \leq m} c_{\alpha}(x_1, \cdots, x_n) \frac{\partial ^ {|\alpha|} {u}}{\partial{x_1}^{\alpha_1} \cdots \partial{x_n}^{\alpha_n}} = d(x_1, \cdots, x_n)
+    $$
+    因为 $\forall u_1, u_2 \in C^{|\alpha|}(\mathbf{R}^n)$，
+    \begin{align}
+         \sum_{1 \leq |\alpha| \leq m} c_{\alpha}(x_1, \cdots, x_n) \frac{\partial ^ {|\alpha|} {(u_1 + u_2)}}{\partial{x_1}^{\alpha_1} \cdots \partial{x_n}^{\alpha_n}}
+         &= 2d(x_1, \cdots, x_n) \\
+         &= \sum_{1 \leq |\alpha| \leq m} c_{\alpha}(x_1, \cdots, x_n) \frac{\partial ^ {|\alpha|} {u_2}}{\partial{x_1}^{\alpha_1} \cdots \partial{x_n}^{\alpha_n}}\\
+   & + \sum_{1 \leq |\alpha| \leq m} c_{\alpha}(x_1, \cdots, x_n) \frac{\partial ^ {|\alpha|} {u_1}}{\partial{x_1}^{\alpha_1} \cdots \partial{x_n}^{\alpha_n}}
+    \end{align}
+    
+我们把所有的 $c_\alpha(x_1, \cdots, x_n)$ 称为 coefficient，而把 $d(x_1, \cdots, x_n)$ 称为 source term.
+\end{defn}
+\fql{注意到，这里面每一个 $c_\alpha$ 作为偏导数前的系数函数，都是一个自变量是 $x_1, \cdots, x_n$ 的函数，不能依赖 $u$, 否则就不 linear 了. \textbf{并且由于偏微分算子本身是 linear 的，于是这个等式一定是关于 $u$ linear 的，并且其他形式都不是 linear PDE.}}
+
+\begin{defn}
+    \deflab{homogeneous}
+    Homogeneous:
+    \\如果一个 PDE $F[u] = 0 $ 的 source term 是 0，就称它是一个 homogenous 的 PDE.
+\end{defn}
+
+\proposition 
+\textbf{显然，如果一个 PDE/ODE 是 homogeneous 的，那么他的任意两个解 $u_1, u_2$ 的任意 linear combination 一定也是它的一个解.}
+
+
+
+\example 
+所有的 second-order linear PDEs 都可以写成以下的形式:
+$$
+a(x,y)u_{xx} + b(x,y)u_{xy} + c(x,y)u_{yy} + d(x,y)u_x + e(x,y)u_y + f(x,y)u = g(x,y)
+$$
+$a,b,c,d,e,f$:  coefficients，$g$: source term.
+
+\begin{defn}
+    \deflab{Classifications of second-order linear PDEs}
+    如果任取 $(x,y)$ 都有 $4a(x,y)c(x,y) - b^2(x,y) >0$, 则称这个二阶线性 PDE 是 elliptic (椭圆)的；
+    \\如果任取 $(x,y)$ 都有 $4a(x,y)c(x,y) - b^2(x,y) =0$，则称这个二阶线性 PDE 是 parabolic (抛物)的；
+    \\如果任取 $(x,y)$ 都有 $4a(x,y)c(x,y) - b^2(x,y) <0$, 则称这个二阶线性 PDE 是 hyperbolic (双曲)的.
+\end{defn}
+
+
+\section{ODE 的解法 review}
+\begin{defn}
+    \deflab{first-order linear ODE}
+    first-order linear ODE:\\
+    $$
+    y' + p(x)y = q(x)
+    $$
+    这是 first order linear ODE 的 general form，比 PDE 简单很多.
+\end{defn}
+
+\subsection{first-order linear ODE 的解法：}
+\paragraph{对于 homogeneous 的: }
+1-order linear ODE 如果是 homogeneous 的，那么就是 separable 的。可以通过分离变量来解出：$y(x) = Ce^{-\int p(x)dx}$ （此处严谨意义上我们可以把 $dx, dy$ 作为 differential form 来分开.）
+
+\paragraph{对于 non-homogenous 的:}
+我们有一种巧妙的方法来解出：
+\begin{compactenumI}
+    \item 对于待求解的微分方程 $y' + p(x)y = q(x)$, 我们先解一个 induced 的 homogeneous  的微分方程 $y' - p(x)y = 0$，并任取一个这个新方程的解函数，记作 $\hat{y}$，通常直接把 $C$ 去掉就可以（$\hat{y} = \; (= e^{\int p(x) dx})$）
+    \item 可以发现，$(\hat{y})' = p(x)y$
+    \item 在原微分方程的左右两边乘上 $\hat{y}$，得到 $(\hat{y}y)' = \hat{y}q(x)$
+    \item $y = \frac{1}{\hat{y}} (\int \hat{y}q(x)dx + C)$
+\end{compactenumI}
+
+\subsection{second-order linear ODE 的解法:}
+\paragraph{对于 constant coeff and homogeneous 的}: 形式为 $ay'' + by' + cy = 0$，有一个公式的解法：
+\\先解决 characteristic equation $a\lambda^2 + b\lambda + c = 0$ 得到两个解 $\lambda_1, \lambda_2$.
+\begin{compactenumI}
+    \item 如果 $\lambda_1 \not= \lambda_2$，那么 general solution 就是 $y(x) = C_1 e^{\lambda_1 x} + C_2 e^{\lambda_2 x}$；注意：如果没有实数根，那么这个方程只在 $\mathcal{F}(\mathbb{C}, \mathbb{C})$ 上有解，但是解的形式也一样.
+    \item 如果 $\lambda_1 = \lambda_2$，那么 general solution 就是 $y(x) = (C_1 + C_2 x) e^{\lambda x}$
+\end{compactenumI}
+
+\remark 
+对于 n 阶 ODE，我们需要解一个 n 次的 characteristic equation，通常需要通过 n 个 linearly independent 的齐次解的 linear combination 来描述整个齐次解空间。原因见 ODE 的自学笔记。
+
+\paragraph{对于 constant coeff and non-homogeneous 的}: 
+微分方程的形式即我们把 $F[u] = 0 $，其中 $F[u] = L[u] - f(x)$, $f(x)$ 为 source term. 
+\\对于每一个 non-homogeneous 的微分方程 $L[u] = f(x)$，我们都可以找到它的 homogeneous 的版本 $L[u] = 0$，并把 $L[u] = 0$ 的 soltion 称为 \textbf{general solution}.\\
+下面我们要说一个定理：
+\begin{theorem}
+    对于任意阶 linear ODE $L[u] = f(x)$：如果 $y_p$ 是 $L[u] = f(x)$ 的一个 solution，而 $y_h$ 是 $L[u] = 0$ 的 general solution，那么 $y_p + y_h$ 就是 $L[u] = f(x)$ 的 solution (的所有形式).
+\end{theorem}
+\fql{这是显然的。因为 L 是 linear 的，$L[y_p + y_h] = L[y_h] + L[y_p] = 0 + f(x) = f(x)$} 
+我们可以先通过上面的方法把二阶线性 homogeneous 方程 $L[u] = 0$ 给解出来.\\
+然后，我们只要找到 $L[x] = f(x)$ 的任意一个解，称之为一个 \textbf{particular solution}，就可以求出它的整个解空间。
+\\找出一个特定解也是有固定的公式方法的。\\
+1. 待定系数法 (method of undetermined coefficients): 适用当 source term $f(x)$ 是一个 polynomial, exponential 或者 trigonometric 函数的时候：我们知道方程的解也是一个形式类似形式的函数。比如 $y'' - 3y' + 2y = e^{2x}$，我们可以设 $y_p(x) = Ae^{2x}$，解出 $A$ 就好。\\
+2. 变量变换法 (variation of parameters): 适用于任何情况。
+公式步骤：
+\begin{compactenumI}
+    \item general solution 的形式一定是 $y_h(x) = C_1 y_1(x) + C_2 y_2(x)$. 现在我们忽略 $C_1, C_2$, 取出 $y_1(x), y_2(x)$.
+    \item 计算 \textbf{Wronskian}: $$W(y_1, y_2) = \begin{vmatrix} y_1(x) & y_2(x) \\ y_1'(x) & y_2'((x) \end{vmatrix} = y_1y_2' - y_2y_1'$$
+    \item $$y_p(x) = -y_1(x) \int{\frac{y_2(x)f(x)}{W(y_1, y_2)} dx} + y_2(x) \int{\frac{y_1(x)f(x)}{W(y_1, y_2)} dx}$$
+\end{compactenumI}
+\begin{proof}
+假设 particular solution \( y_p(x) \) 的形式为：
+\[y_p = u_1(x) y_1(x) + u_2(x) y_2(x)\]
+
+为了简化计算，我们施加一个条件：$u_1' y_1 + u_2' y_2 = 0$
+\\于是 \[y_p' = u_1 y_1' + u_2 y_2',
+\;\;y_p'' = u_1' y_1' + u_1 y_1'' + u_2' y_2' + u_2 y_2'' = (u_1' y_1' + u_2' y_2') + (u_1 y_1'' + u_2 y_2'')\]
+
+\textbf{代入原方程}
+\[(u_1' y_1' + u_2' y_2') + u_1 y_1'' + u_2 y_2'' + p(u_1 y_1' + u_2 y_2') + q(u_1 y_1 + u_2 y_2) = r(x)\]
+
+因为 \( y_1 \) 和 \( y_2 \) 满足 homogeneous 方程，所以：
+\[y_i'' + p y_i' + q y_i = 0 (i = 1, 2), \;\;y_i'' = -p y_i' - q y_i\]
+
+代入后得到：
+\[\begin{aligned}
+& (u_1' y_1' + u_2' y_2') + u_1 (-p y_1' - q y_1) + u_2 (-p y_2' - q y_2) \\
+& \quad + p(u_1 y_1' + u_2 y_2') + q(u_1 y_1 + u_2 y_2) = r(x)
+\end{aligned}\]
+
+化简后相互抵消，只剩下$u_1' y_1' + u_2' y_2' = r(x)$.
+
+\textbf{结合之前的条件，得到如下方程组：}
+
+\[\begin{bmatrix}y_1 & y_2 \\y_1' & y_2'\end{bmatrix}
+\begin{bmatrix}u_1' \\u_2'\end{bmatrix}=
+\begin{bmatrix}0 \\r(x)\end{bmatrix}\]
+
+\[W = \begin{vmatrix}y_1 & y_2 \\y_1' & y_2'\end{vmatrix} = y_1 y_2' - y_1' y_2\]
+\textbf{利用克莱姆法则求解}
+\[u_1' = \frac{\begin{vmatrix}0 & y_2 \\r(x) & y_2'\end{vmatrix}}{W} = \frac{0 \cdot y_2' - y_2 \cdot r(x)}{W} = -\frac{y_2 r(x)}{W}\]
+\[u_2' = \frac{\begin{vmatrix}y_1 & 0 \\y_1' & r(x)
+\end{vmatrix}}{W} = \frac{y_1 \cdot r(x) - 0 \cdot y_1'}{W} = \frac{y_1 r(x)}{W}\]
+\textbf{积分求解 \( u_1(x) \) 和 \( u_2(x) \)}
+\[\begin{aligned}
+u_1(x) &= -\int \frac{y_2 r(x)}{W} \, dx + C_1 \\
+u_2(x) &= \int \frac{y_1 r(x)}{W} \, dx + C_2
+\end{aligned}\]
+由于只需要一个 particular solution，可以令积分常数为零。
+\[y_p = u_1 y_1 + u_2 y_2 = y_1 \left( -\int \frac{y_2 r(x)}{W} \, dx \right) + y_2 \left( \int \frac{y_1 r(x)}{W} \, dx \right)\]
+\end{proof}
+
+\paragraph{对于 nonconstant coeff 的}: 
+见 ODE 的自学笔记。
+具体有以下：\\
+1. power series 解法：当 coeff function 在某点表现为 analytic 的时候使用。
+\\2. Frobenius 方法：power series 解法的扩展
+\\3. Laplace 变换：对于某些类型的 boundary value problem，可以把 diff equation 转化为 algebraic equation.
+次数不展开.
+
+\section{Boundary value problems of PDE}
+\subsection{Separation of variables}
+我们可以先假设这个 PDE 的解是可以分离为一个 $X$ 的函数和一个 $Y$ 的函数的，即 $u(x,y) = X(x)Y(y)$，然后我们把它代入原二阶 PDE 进行尝试，把 PDE 的左右两边分离 $u$ 关于变量 $x$ 和关于变量 $y$ 的 ODE，如果分离不出来就说明无法找到可分离变量的解。
+\\
+\fql{通常, second-order linear homogenenous PDEs 都具有可分离变量的解! 并且，大部分 second-order linear homogenenous PDEs 的解系中的任意解都是可分离变量的，即\textbf{我们通过分离变量法得出的结果是一个 complete 的 solution set.} 什么样的二阶 PDE 通过 separation of variables 得出的 solution set 是 complete 的? 请见下 criterion:}
+
+\begin{theorem}
+    \thmlab{Separable of variables}
+    如果对于 PDE $F[u] = 0$ 满足以下条件, 那么这个 PDE 通过 separable of variables 得出的 soluiton set 是 complete 的:\\
+    \begin{compactenumI}
+    \item $F[u] = 0$ 是 linear homogeneous PDE.
+    \item boundary conditions 也是 linear homogeneous 的.
+    \item 分离变量后得到的两边 ODE 对应的微分算子是 self-adjoint operator.
+    \item 分离变量后得到的两边 ODE 在 Sturm-Liouville eigenvalue problem 中的 eigenfunctions 形成一个 complete orthogonal system.
+\end{compactenumI}
+\end{theorem}
+这下面两个条件是什么意思？等下再说，我们先不管它。我们先分离一个看看是什么结果。
+
+我们分离 Laplace's equation:
+$$
+\frac{\partial ^2 u}{\partial x ^ 2} + \frac{\partial ^2 u}{\partial y ^ 2} = 0
+$$
+分离得到：
+$$
+Y \frac{d^2 X}{dx^2} = -X \frac{d^2 Y}{dy^2} \Rightarrow  \frac{X''}{X} = - \frac{Y''}{Y}
+$$
+
+令 $\frac{X''}{X} = - \frac{Y''}{Y} = \lambda$, 称 $\lambda$ 为 \textbf{separation constant}，我们得到了两个 separated ODE: $X'' + \lambda x = 0$, $Y'' - \lambda y = 0$.
+我们将 $\lambda$ 的值在 $\mathbb{R}$ 上分类讨论，得到了三个解系，将它们合并起来就是用 separation 法得出的整个解系:
+
+\[
+u = 
+\begin{cases} 
+(A_1 x + A_2)(B_1 y + B_2), \\ 
+(A_1 e^{ikx} + A_2 e^{-ikx})(B_1 e^{ky} + B_2 e^{-ky}), \\
+(A_1 e^{lx} + A_2 e^{-lx})(B_1 e^{ily} + B_2 e^{-ily})
+\end{cases}
+\]
+如果不选择指数作为基解而是选择 sin, cos (for complex) 及 sinh, cosh (for real) 作为等价的基解，那么这个 solution space 就成为以下的形式：
+\[
+u = 
+\begin{cases} 
+(A_1 x + A_2)(B_1 y + B_2), \\
+(A_1 \cos(kx) + A_2 \sin(kx))(B_1 \cosh(ky) + B_2 \sinh(ky)), \\
+(A_1 \cosh(lx) + A_2 \sinh(lx))(B_1 \cos(ly) + B_2 \sin(ly))
+\end{cases}
+\]
+
+
+\subsection{Fitting the solution set to boundary conditions}
+\paragraph{} 如果给出 $u(0,y) = 0, u(L,y) = 0, u(x,0) = 0$ 三个 boundary conditions, 那么 $u$ 就被限制到了 $u(x,y) = A \sin{\frac{n \pi x}{L}} sinh{\frac{n \pi x}{L}}, \; n\in \mathbb{N}$ 上;
+\\\\但是如果再给出第四个 boundary condition: $u(x, L) = \varphi(x)$，其中 $\varphi(x)$ 是一个函数，那么解空间会是什么样子呢？这个时候单个的 $u(x,y)$ 几乎不可能通过调整系数 $A, B$ 来模拟 $\varphi(x)$ 的行为。(除非 $\varphi(x)$ 正好就是一个正弦函数.)
+\\\\这个时候，我们想起来：因为这个微分方程是 linear homogeneous 的，所以任意解的任意 lienar combination 仍然是一个解，可以推广至无穷；但是这有什么用呢？我们需要介绍 Fourier theory: \textbf{满足一定条件的函数，可以用不同频率的 $sin, cos$ 函数来逼近，并且如果在无穷项上收敛到这个函数本身. 即: 通过调整每项系数 $A_i$，可以使得在一定范围内 $\varphi(x) = \sum_{n=1}^{\infty} A_i \sin{\frac{n \pi x}{L}}$}
+\\\\也就是说，我们可以调整所有的参数 $A_i$，我们可以让 $u(x,y) = \sum_{n=1}^{\infty} A_i \sin \frac{n \pi x}{L} \sinh \frac{n \pi x}{L}$ 满足这个 boundary condition 的要求. 所以存在一组系数 $\{A_i\}$ 使得 $u(x,y) = \sum_{n=1}^{\infty} A_i \sin \frac{n \pi x}{L} \sinh \frac{n \pi x}{L}$  成为满足 boundary condition 的唯一解。
+\\\\这个唯一解是可以求出来的，其中的系数 $A_n = \frac{2}{L \sinh{n \pi }} \int_0^L \varphi(x) \sin \frac{n \pi x}{L}dx$，具体的求法见下一章.
+
+
+
+\section{Intro to Fourier Series}
+
+\begin{defn}
+    \deflab{Fourier series}
+    Fourier series:\\
+    一个 Fourier series 就是给定一组系数 $A_0, \{A_n, B_n | n \in \mathbb{N}\}$ 的级数 $$
+    A_0 + \sum_{n = 1} ^ \infty (A_n \cos \frac{n \pi x}{L} + B_n \sin \frac{n \pi x}{L}) 
+    $$
+    我们可以把其中的 $\cos \frac{n \pi x}{L}, \sin \frac{n \pi x}{L}$ 简写为 $\cos_n, \sin_n$，即：
+    $$
+    A_0 + \sum_{n = 1} ^ \infty (A_n \cos_n + B_n \sin _n)
+    $$
+\end{defn}
+
+\begin{theorem}
+    \thmlab{Represent a function by Fourier series}
+    任意一个 real/complex-valued 的函数 $f(x): (-L, L) \rightarrow \mathbb{C}$，只要在 $(-L, L)$ 上满足 \textbf{Dirichlet Conditions}，那么就在 $(-L, L)$ 上等于一个Fourier 函数列级数.\\
+    即：存在系数 $A_0, \{A_n, B_n | n \in \mathbb{N}\}$ 使得 
+     $$
+    f(x) = A_0 + \sum_{n = 1} ^ \infty (A_n \cos \frac{n \pi x}{L} + B_n \sin \frac{n \pi x}{L})\; , \; x \in (-L, L)
+    $$
+
+    \textbf{Dirichlet Conditions} ：$f(x)$ 在 $(-L,L)$ 上的不连续点和极值点有限（不能太不连续，不能太过震荡）；Rmk: 在不连续点上傅里叶级数会收敛到左极限和右极限的平均值.
+ \end{theorem}
+
+
+
+\subsection{Orthogonality of trigonometric function}
+\begin{theorem}
+    \thmlab{Orthogonality of trigonometric function}
+    Orthogonality of trigonometric function:\\
+    任取 $n,m \in \mathbb{N}, L > 0$, 都有：
+    \[
+\int_{-L}^{L} \cos_n \cos_m dx = 
+\begin{cases} 
+2L, & (n = m = 0), \\ 
+L \delta_{nm}, & (\text{otherwise}),
+\end{cases}
+\]
+
+\[
+\int_{-L}^{L} \sin_m \sin_n  dx = 
+\begin{cases} 
+0, & (n = m = 0), \\ 
+L \delta_{nm}, & (\text{otherwise}),
+\end{cases}
+\]
+
+\[
+\int_{-L}^{L} \sin_n \cos_m dx = 0, \quad (\text{for all } n, m).
+\]
+即：\textbf{在 Hilbert space $L^2([-L, L])$，即 [-L, L] 上的平方可积函数空间上，取内积 $<f(x), g(x)> = \int_{-L}^L f(x)g(x)dx$，任意的 $\sin_m$ 和 $cos_n$ 都是 orthogonal 的}，\textbf{而不同频率的 $\cos_n$ 自身之间，以及不同频率 $\sin_n$ 自身之间也是 orthogonal 的}
+\end{theorem}
+
+
