@@ -1,0 +1,237 @@
+\documentclass[lang=en,11pt]{template}
+
+\usepackage{amsmath}%
+\usepackage{amssymb}%
+\title{Homework 5}
+\author{}
+\date{Due Friday September 27 at 7PM (Bonus 24 hours later)}
+
+\begin{document}   
+
+\chapter{hw 5}
+
+
+\section*{Question 1}
+Find the eigenvalues and eigenfunctions for the Sturm-Liouville eigenvalue problem and use explicit computation to show that different eigenfunctions are orthogonal.
+\[
+\phi''(x) + \lambda \phi(x) = 0, \quad \phi(0) = 0, \quad \phi'(L) = 0.
+\]
+\textbf{Solution.} 
+\[
+\phi_n(x) = A \sin \left( \left( n - \frac{1}{2} \right) \frac{\pi x}{L} \right), \quad \lambda_n = \left( \left( n - \frac{1}{2} \right) \frac{\pi}{L} \right)^2, \quad n = 1, 2, \ldots,
+\]
+where $A$ is an arbitrary constant. To compute $\int_0^L \phi_n(x)\phi_m(x)dx$, the following identity is useful:
+\[
+\sin \alpha \sin \beta = \frac{1}{2} [\cos(\alpha - \beta) - \cos(\alpha + \beta)].
+\]
+
+\section*{Question 2}
+Find the eigenvalues and eigenfunctions for the Sturm-Liouville eigenvalue problem:
+\[
+\phi''(x) + \lambda \phi(x) = 0, \quad \phi'(0) = 0, \quad \phi(L) = 0.
+\]
+\textbf{Solution.} 
+\[
+\phi_n(x) = A \cos \left( \left( n - \frac{1}{2} \right) \frac{\pi x}{L} \right), \quad \lambda_n = \left( \left( n - \frac{1}{2} \right) \frac{\pi}{L} \right)^2, \quad n = 1, 2, \ldots,
+\]
+where $A$ is an arbitrary constant.
+
+\section*{Question 3}
+Find the eigenvalues and eigenfunctions for the Sturm-Liouville eigenvalue problem:
+\[
+\phi''(x) + \lambda \phi(x) = 0, \quad \phi(0) = \phi(L), \quad \phi'(0) = \phi'(L).
+\]
+\textbf{Solution.} 
+\[
+\phi_n(x) = A \cos\left( \frac{2n\pi x}{L} \right) + B \sin\left( \frac{2n\pi x}{L} \right), \quad \lambda_n = \left( \frac{2n\pi}{L} \right)^2, \quad n = 1, 2, \ldots,
+\]
+and
+\[
+\phi_0(x) = C, \quad \lambda_0 = 0,
+\]
+where $A$, $B$, and $C$ are arbitrary constants. (The orthogonality theorem can be extended to the case of periodic boundary conditions.)
+
+\section*{Question 4}
+Solve the initial-value problem for the heat equation $u_t = K u_{zz}$ with the boundary conditions $u(0,t) = T_1$, $u_z(L,t) = \Phi_2$, and the initial condition $u(z,0) = T_3$, where $K$, $T_1$, $\Phi_2$, and $T_3$ are positive constants.
+
+\textbf{Solution.} 
+\[
+u(z,t) = T_1 + \Phi_2 z + \sum_{n=1}^{\infty} A_n \sin\left( \left( n - \frac{1}{2} \right) \frac{\pi z}{L} \right) \exp\left( -\left( \left( n - \frac{1}{2} \right) \frac{\pi}{L} \right)^2 K t \right),
+\]
+where
+\[
+A_n = \frac{2(T_3 - T_1)}{\left( n - \frac{1}{2} \right)\pi} - \frac{2L \Phi_2 (-1)^{n+1}}{\left( n - \frac{1}{2} \right)^2 \pi^2}.
+\]
+
+\section*{Question 5}
+Let us consider heat flow in a circular ring of circumference $L$.
+
+1) Find all of the separated solutions of the heat equation $u_t = K u_{zz}$ ($K > 0$) satisfying the periodic boundary conditions $u(0,t) = u(L,t)$ and $u_z(0,t) = u_z(L,t)$.
+
+2) Solve the heat equation $u_t = K u_{zz}$ ($K > 0$) satisfying the periodic boundary conditions $u(0,t) = u(L,t)$, and the initial conditions $u(z,0) = 100$ if $0 < z < L/2$ and $u(z,0) = 0$ if $L/2 < z < L$.
+
+\textbf{Solution.}
+1) 
+\[
+u_n(z,t) = \left( A_n \cos \frac{2n\pi z}{L} + B_n \sin \frac{2n\pi z}{L} \right) \exp\left( -\left( \frac{2n\pi}{L} \right)^2 K t \right), \quad n = 0, 1, 2, \ldots
+\]
+
+2)
+\[
+u(z,t) = 50 + \frac{100}{\pi} \sum_{n=1}^{\infty} \frac{1 - (-1)^n}{n} \sin \frac{2n\pi z}{L} \exp\left( -\left( \frac{2n\pi}{L} \right)^2 K t \right).
+\]
+
+
+
+
+
+
+
+\chapter{hw 6}
+\section*{Question 1}
+Find the asymptotic function for Question 4 in the Homework Problem Set 5 and justify your answer.
+
+\textbf{Solution.} 
+\[
+u(t, z) \to U(z) \quad \text{where} \quad U(z) \text{ is the steady solution.}
+\]
+
+\section*{Question 2}
+Find the solution of the nonhomogeneous heat equation
+\[
+u_t = K u_{zz} + v e^{-at} \sin \frac{\pi z}{L}, \quad 0 < z < L, \quad t > 0,
+\]
+with $u(0,t) = u(L,t) = u(z,0) = 0$. Here $a$, $v$, $K$ are positive constants.
+
+\textbf{Solution.} If $a \neq \frac{\pi^2 K}{L^2}$, then
+\[
+u(z,t) = -v \sin \frac{\pi z}{L} \frac{e^{-at} - e^{-\frac{\pi^2 K t}{L^2}}}{a - \frac{\pi^2 K}{L^2}}.
+\]
+If $a = \frac{\pi^2 K}{L^2}$, then
+\[
+u(z,t) = v \sin \frac{\pi z}{L} t e^{-\frac{\pi^2 K t}{L^2}}.
+\]
+
+\section*{Question 3}
+Find the solution of the nonhomogeneous heat equation
+\[
+\begin{aligned}
+u_t &= u_{xx} + \frac{1}{2} e^{-t}, \quad 0 < x < 1, \quad t > 0, \\
+u(0,t) &= \frac{1}{2} e^{-t}, \quad u(1,t) = \frac{1}{2} e^{-t}, \\
+u(x,0) &= x + \frac{1}{2}.
+\end{aligned}
+\]
+
+\textbf{Solution.}
+\[
+u(x,t) = \frac{1}{2} e^{-t} + \sum_{n=1}^{\infty} \frac{2 (-1)^{n+1}}{n \pi} e^{-n^2 \pi^2 t} \sin n \pi x + \sum_{n=1}^{\infty} \frac{2 (1 - (-1)^n)}{n \pi (n^2 \pi^2 - 1)} \left( e^{-t} - e^{-n^2 \pi^2 t} \right) \sin n \pi x.
+\]
+
+\section*{Question 4}
+The energy of a vibrating string of tension $T_0$ and density $\rho = \frac{m}{L}$ is defined by
+\[
+E = \frac{1}{2} \int_0^L \left( \rho y_t^2 + T_0 y_s^2 \right) ds.
+\]
+Let
+\[
+y(s,t) = \sum_{n=1}^{\infty} \left( A_n \cos \omega_n t + B_n \sin \omega_n t \right) \sin \frac{n \pi s}{L}
+\]
+be a solution of the wave equation with $\omega_n = \frac{n \pi c}{L}$, where $c^2 = \frac{T_0}{\rho}$. Show that $E$ is independent of $t$ (conservation of energy) by using Parseval’s theorem to write $E$ as an infinite series involving $A_n$, $B_n$.
+
+\textbf{Solution.}
+\[
+E = \frac{L}{4} \sum_{n=1}^{\infty} \left( \rho \omega_n^2 B_n^2 + T_0 \left( \frac{n \pi}{L} \right)^2 A_n^2 \right).
+\]
+
+\section*{Question 5}
+Consider the following initial-value problem for the wave equation $y_{tt} = c^2 y_{ss}$ for $t > 0$, $0 < s < L$ with $y(0,t) = y(L,t) = 0$ for $t > 0$ and $y(s,0) = 0$, $y_t(s,0) = 1$ for $0 < s < L$. Find the Fourier representation of the solution.
+
+\textbf{Solution.}
+\[
+y(s,t) = \frac{2L}{\pi^2 c} \sum_{n=1}^{\infty} \frac{1 - (-1)^n}{n^2} \sin \frac{n \pi s}{L} \sin \frac{n \pi c t}{L}.
+\]
+
+
+
+
+
+
+
+
+
+
+
+\chapter{hw 7}
+\section*{Question 1}
+Find the solution of the homogeneous wave equation
+\[
+\begin{aligned}
+\frac{\partial^2 u}{\partial t^2} (x, t) &= c^2 \frac{\partial^2 u}{\partial x^2} (x, t), \quad 0 < x < 1, \, t > 0, \\
+u(0,t) &= u(1,t) = 0, \quad t > 0, \\
+u(x,0) &= x(1 - x), \quad 0 < x < 1, \\
+u_t(x,0) &= 0, \quad 0 < x < 1.
+\end{aligned}
+\]
+\textbf{Solution.} 
+\[
+u(x,t) = \sum_{k=1, k \, \text{odd}}^{\infty} \frac{8}{k^3 \pi^3} \sin(k\pi x) \cos(ck\pi t).
+\]
+
+\section*{Question 2}
+Compute the multidimensional sine Fourier series of $f(x, y) = xy$, $x, y \in [-\pi, \pi] \times [-\pi, \pi]$.
+
+\textbf{Solution.} 
+\[
+f(x,y) = \sum_{n,m=1}^{\infty} \frac{4}{nm} (-1)^{n+m} \sin(nx) \sin(my).
+\]
+
+\section*{Question 3}
+Solve the initial-value problem for the heat equation $u_t = K \Delta u$ in the column $0 < x < L_1$, $0 < y < L_2$ with the boundary conditions $u(0,y,t) = 0$, $u_x(L_1,y,t) = 0$, $u(x,0,t) = 0$, $u_y(x,L_2,t) = 0$, and the initial condition $u(x,y,0) = 1$.
+
+\textbf{Solution.} 
+\[
+u(x,y,t) = \frac{4}{\pi^2} \sum_{m,n=1}^{\infty} u_{mn}(x,y,t),
+\]
+where
+\[
+u_{mn}(x,y,t) = \sin\left( \left( m - \frac{1}{2} \right) \frac{\pi x}{L_1} \right) \frac{1}{m - \frac{1}{2}} \sin\left( \left( n - \frac{1}{2} \right) \frac{\pi y}{L_2} \right) \frac{1}{n - \frac{1}{2}} e^{-\lambda_{mn} K t}.
+\]
+Here,
+\[
+\lambda_{mn} = \left( m - \frac{1}{2} \right)^2 \left( \frac{\pi}{L_1} \right)^2 + \left( n - \frac{1}{2} \right)^2 \left( \frac{\pi}{L_2} \right)^2.
+\]
+
+\section*{Question 4}
+Find the solution of the homogeneous wave equation
+\[
+\begin{aligned}
+u_{tt} &= u_{xx} + u_{yy}, \quad t > 0, \, (x, y) \in [0, \pi] \times [0, \pi], \\
+u(0, y, t) &= 0, \quad u(\pi, y, t) = 0, \quad t > 0, \, y \in [0, \pi], \\
+u(x, 0, t) &= 0, \quad u(x, \pi, t) = 0, \quad t > 0, \, x \in [0, \pi], \\
+u(x, y, 0) &= xy, \quad u_t(x, y, 0) = 0, \quad x, y \in [0, \pi] \times [0, \pi].
+\end{aligned}
+\]
+
+\textbf{Solution.} 
+\[
+u(x, y, t) = \sum_{n,m=1}^{\infty} \frac{4}{nm} (-1)^{n+m} \cos\left( \sqrt{n^2 + m^2} t \right) \sin(nx) \sin(my).
+\]
+
+\section*{Question 5}
+Find the solution of the homogeneous wave equation
+\[
+\begin{aligned}
+u_{tt} &= u_{xx} + u_{yy}, \quad t > 0, \, (x, y) \in [0, \pi] \times [0, \pi], \\
+u_x(0, y, t) &= 0, \quad u_x(\pi, y, t) = 0, \quad t > 0, \, y \in [0, \pi], \\
+u(x, 0, t) &= 0, \quad u(x, \pi, t) = 0, \quad t > 0, \, x \in [0, \pi], \\
+u(x, y, 0) &= x(\pi - x)y, \quad u_t(x, y, 0) = 0, \quad x, y \in [0, \pi] \times [0, \pi].
+\end{aligned}
+\]
+
+\textbf{Solution.}
+\[
+u(x, y, t) = -\sum_{m=1}^{\infty} \frac{\pi^2 (-1)^m}{3m} \cos(mt) \sin(my) + \sum_{n,m=1}^{\infty} \frac{4(1 + (-1)^n)(-1)^m}{n^2 m} \cos\left( \sqrt{n^2 + m^2} t \right) \cos(nx) \sin(my).
+\]
+
+
+\end{document}
