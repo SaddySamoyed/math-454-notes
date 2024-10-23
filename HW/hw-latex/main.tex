@@ -8,6 +8,129 @@
 
 \begin{document}   
 
+\chapter{hw 1}
+\section*{Question 1}
+Classify each of the following second-order equations as elliptic, parabolic, or hyperbolic:
+\begin{enumerate}
+    \item $u_{xx} + 3u_{xy} + u_{yy} + 2u_x - u_y = 0$ --- hyperbolic
+    \item $u_{xx} + 3u_{xy} + 8u_{yy} + 2u_x - u_y = 0$ --- elliptic
+    \item $u_{xx} - 2u_{xy} + u_{yy} + 2u_x - u_y = 0$ --- parabolic
+    \item $u_{xx} + xu_{yy} = 0$ --- elliptic if $x > 0$, hyperbolic if $x < 0$
+\end{enumerate}
+
+\section*{Question 2}
+Prove the following claims:
+\begin{enumerate}
+    \item $\sinh(x + y) = \sinh x \cosh y + \cosh x \sinh y$, \\
+          $\cosh(x + y) = \cosh x \cosh y + \sinh x \sinh y$
+    \item Use Euler’s formula to prove \\
+          $\sin(x+y) = \sin x \cos y + \cos x \sin y$, \\
+          $\cos(x+y) = \cos x \cos y - \sin x \sin y$
+    \item Use Euler’s formula to prove that all the real functions in $C_+e^{ix} + C_-e^{-ix}$ is of the form $A \cos x + B \sin x$.
+\end{enumerate}
+
+\section*{Question 3}
+Find the general solutions:
+\begin{enumerate}
+    \item $y' = ky(1 - y)$
+    \item $xy' + 4y = x^2$
+    \item $y'' + 4y' + 4y = 0$
+    \item $y'' + 2y' - 15y = 0$
+\end{enumerate}
+
+\section*{Question 4}
+Find the separated equations satisfied by $X(x)$ and $Y(y)$ for the following PDEs:
+\begin{enumerate}
+    \item $u_{xx} - 2u_{yy} = 0$
+    \item $u_{xx} + u_{yy} + 2u_x = 0$
+    \item $x^2u_{xx} - 2yu_y = 0$
+    \item $u_{xx} + u_x + u_y - u = 0$
+\end{enumerate}
+
+\section*{Question 5}
+Find the separated solutions of $u_{xx} + y u_y + u = 0$.
+
+\section*{Question 6}
+Find the separated solutions $u(x, t)$ of the heat equation $u_t - u_{xx} = 0$ in the region $0 < x < L$, $t > 0$, with boundary conditions $u(0, t) = 0$, $u(L, t) = 0$.
+
+
+
+
+\chapter{hw 2}
+\section*{Question 1}
+Compute the Fourier series of $f(x) = x^2$, $-L < x < L$.
+\[
+f(x) = \frac{L^2}{3} + \sum_{n=1}^{\infty} \frac{4L^2}{n^2 \pi^2} (-1)^n \cos\left(\frac{n \pi x}{L}\right)
+\]
+
+\section*{Question 2}
+Compute the Fourier series of $f(x) = e^x$, $-L < x < L$.
+\[
+f(x) = \frac{\sinh L}{L} \left[ 1 + 2 \sum_{n=1}^{\infty} (-1)^n \frac{\cos(n \pi x / L) - (n \pi / L) \sin(n \pi x / L)}{1 + (n \pi / L)^2} \right]
+\]
+
+\section*{Question 3}
+Compute the Fourier series of $f(x) = \sin^2 2x$, $-\pi < x < \pi$.
+\[
+f(x) = \frac{1}{2} - \frac{1}{2} \cos(4x)
+\]
+
+\section*{Question 4}
+Prove the orthogonality relations.
+
+\section*{Question 5}
+Which of the following functions are even, odd, or neither?
+
+\section*{Question 6}
+Find the Fourier sine series and Fourier cosine series for $f(x) = e^x$, $0 < x < L$.
+
+
+
+
+\chapter{hw 3}
+
+\section*{Question 1}
+Use the complex form to find the Fourier series of $f(x) = e^x$, $-L < x < L$.
+
+\section*{Question 2}
+Derive the given formulas for complex Fourier series.
+
+\section*{Question 3}
+Find the mean square error for the Fourier series of $f(x) = 1$ for $0 < x < \pi$, $f(0) = 0$, and $f(x) = -1$ for $-\pi < x < 0$.
+
+\section*{Question 4}
+Find the mean square error for the Fourier series of $f(x) = x^2$, $-\pi \leq x \leq \pi$.
+
+\section*{Question 5}
+Write out Parseval's theorem for the Fourier series.
+
+
+
+
+
+
+\chapter{hw 4}
+
+\section*{Question 1}
+Find the steady-state (time independent) solution of the heat equation $u_t = K u_{zz}$ in the slab $0 < z < L$.
+
+\section*{Question 2}
+Solve the initial-value problem $u_t = K u_{zz}$ with given boundary conditions.
+
+\section*{Question 3}
+Solve the initial-value problem $u_t = K u_{zz}$ with different boundary conditions.
+
+\section*{Question 4}
+Compute the given quantities for $\varphi_1 = 1$, $\varphi_2 = x$, and $\varphi_3 = x^2$.
+
+\section*{Question 5}
+Check if the given operator is symmetric on its domain.
+
+\section*{Question 6}
+Convert the given ODEs into Sturm-Liouville form.
+
+
+
 \chapter{hw 5}
 
 
@@ -25,16 +148,7 @@ where $A$ is an arbitrary constant. To compute $\int_0^L \phi_n(x)\phi_m(x)dx$, 
 \sin \alpha \sin \beta = \frac{1}{2} [\cos(\alpha - \beta) - \cos(\alpha + \beta)].
 \]
 
-\section*{Question 2}
-Find the eigenvalues and eigenfunctions for the Sturm-Liouville eigenvalue problem:
-\[
-\phi''(x) + \lambda \phi(x) = 0, \quad \phi'(0) = 0, \quad \phi(L) = 0.
-\]
-\textbf{Solution.} 
-\[
-\phi_n(x) = A \cos \left( \left( n - \frac{1}{2} \right) \frac{\pi x}{L} \right), \quad \lambda_n = \left( \left( n - \frac{1}{2} \right) \frac{\pi}{L} \right)^2, \quad n = 1, 2, \ldots,
-\]
-where $A$ is an arbitrary constant.
+ 
 
 \section*{Question 3}
 Find the eigenvalues and eigenfunctions for the Sturm-Liouville eigenvalue problem:
@@ -112,6 +226,102 @@ If $a = \frac{\pi^2 K}{L^2}$, then
 u(z,t) = v \sin \frac{\pi z}{L} t e^{-\frac{\pi^2 K t}{L^2}}.
 \]
 
+\begin{solution}
+You need to solve it in the formula way below:
+\subsection*{The formula way to solve inhomogeneous heat eq}
+
+Here we suppose that \( r, T_1, T_2 \) depend on time \( t \). In the slab \( 0 < z < L \) we have
+
+\[
+\begin{cases}
+u_t = K u_{zz} + r(z,t), & t > 0, \quad 0 < z < L, \\
+u(0,t) \cos \alpha - L u_z(0,t) \sin \alpha = T_1(t), & t > 0, \\
+u(L,t) \cos \beta + L u_z(L,t) \sin \beta = T_2(t), & t > 0, \\
+u(z,0) = f(z), & 0 < z < L,
+\end{cases}
+\]
+where \( K > 0 \) and \( \alpha, \beta \in [0, \pi) \) are constants. We assume that \( r(z,t), f(z), T_1(t), T_2(t) \) are piecewise smooth functions.
+
+
+
+\subsubsection*{Step 1:}
+We first solve the problem below.
+
+\[
+\begin{cases}
+U_{zz}(z,t) = 0, & 0 < z < L, \\
+U(0,t) \cos \alpha - L U_z(0,t) \sin \alpha = T_1(t), & t > 0, \\
+U(L,t) \cos \beta + L U_z(L,t) \sin \beta = T_2(t), & t > 0.
+\end{cases}
+\]
+
+Note: The function $U(z,t)$ obtained in Step 1 is as
+$$
+U(z,t) = A(t) + B(t)z
+$$
+
+\subsubsection*{Step 2:}
+We define \( v(z,t) = u(z,t) - U(z,t) \). We also introduce
+
+\[
+R(z,t) = r(z,t) - U_t(z,t), \quad F(z) = f(z) - U(z,0).
+\]
+
+Thus, the new problem for \( v(z,t) \) becomes
+
+\[
+\begin{cases}
+v_t = K v_{zz} + R(z,t), & t > 0, \quad 0 < z < L, \\
+v(0,t) \cos \alpha - L v_z(0,t) \sin \alpha = 0, & t > 0, \\
+v(L,t) \cos \beta + L v_z(L,t) \sin \beta = 0, & t > 0, \\
+v(z,0) = F(z), & 0 < z < L.
+\end{cases}
+\]
+
+\subsubsection*{Step 3:}
+We solve (2.19) for \( v(z,t) \), and finally we obtain \( u(z,t) = U(z,t) + v(z,t) \).
+
+To solve it (2.19), We consider the following Sturm-Liouville problem:
+
+\[
+\begin{cases}
+\phi'' + \lambda \phi = 0, & 0 < z < L, \\
+\phi(0) \cos \alpha - L \phi'(0) \sin \alpha = 0, \\
+\phi(L) \cos \beta + L \phi'(L) \sin \beta = 0.
+\end{cases}
+\]
+
+Let \( \lambda_n \) and \( \phi_n \) be eigenvalues and eigenfunctions of this Sturm-Liouville eigenproblem. We express \( v, R, F \) with \( \phi_n \) (recall the convergence theorem):
+
+\[
+v(z,t) = \sum_{n=1}^{\infty} v_n(t) \phi_n(z), \quad R(z,t) = \sum_{n=1}^{\infty} R_n(t) \phi_n(z), \quad F(z) = \sum_{n=1}^{\infty} F_n \phi_n(z).
+\]
+
+Note that \( v(z,t) \) written in this way automatically satisfies the boundary conditions in (2.19). Here, by using \( \int_0^L \phi_n(z) \phi_m(z) dz = 0 \) for \( n \neq m \), we obtain
+
+\[
+R_n = \frac{\int_0^L [r(z,t) - U_t(z,t)] \phi_n(z) dz}{\int_0^L \phi_n(z)^2 dz}, \quad F_n = \frac{\int_0^L [f(z) - U(z)] \phi_n(z) dz}{\int_0^L \phi_n(z)^2 dz}.
+\]
+
+By substituting these expansions in (2.19), we obtain
+
+\[
+\begin{cases}
+v_n'(t) = -\lambda_n K v_n(t) + R_n(t), & t > 0, \\
+v_n(0) = F_n.
+\end{cases}
+\]
+
+We can solve this equation as (recall we can always solve first-order ODEs):
+
+\[
+v_n(t) = F_n e^{-\lambda_n K t} + \int_0^t R_n(s) e^{-\lambda_n K (t-s)} ds.
+\]
+    
+\end{solution}
+
+
+
 \section*{Question 3}
 Find the solution of the nonhomogeneous heat equation
 \[
@@ -127,6 +337,12 @@ u(x,0) &= x + \frac{1}{2}.
 u(x,t) = \frac{1}{2} e^{-t} + \sum_{n=1}^{\infty} \frac{2 (-1)^{n+1}}{n \pi} e^{-n^2 \pi^2 t} \sin n \pi x + \sum_{n=1}^{\infty} \frac{2 (1 - (-1)^n)}{n \pi (n^2 \pi^2 - 1)} \left( e^{-t} - e^{-n^2 \pi^2 t} \right) \sin n \pi x.
 \]
 
+\begin{solution}
+    Apply the same formula method.
+\end{solution}
+
+
+
 \section*{Question 4}
 The energy of a vibrating string of tension $T_0$ and density $\rho = \frac{m}{L}$ is defined by
 \[
@@ -140,7 +356,7 @@ be a solution of the wave equation with $\omega_n = \frac{n \pi c}{L}$, where $c
 
 \textbf{Solution.}
 \[
-E = \frac{L}{4} \sum_{n=1}^{\infty} \left( \rho \omega_n^2 B_n^2 + T_0 \left( \frac{n \pi}{L} \right)^2 A_n^2 \right).
+E = \frac{L}{4} \sum_{n=1}^{\infty} \left( \rho \omega_n^2 B_n^2 + T_0 \left( \frac{n \pi}{L}  \right)^2 A_n^2 \right).
 \]
 
 \section*{Question 5}
@@ -176,6 +392,35 @@ u_t(x,0) &= 0, \quad 0 < x < 1.
 \[
 u(x,t) = \sum_{k=1, k \, \text{odd}}^{\infty} \frac{8}{k^3 \pi^3} \sin(k\pi x) \cos(ck\pi t).
 \]
+
+\begin{solution}
+    就是计算 
+    $$
+    \int_0^L x \sin(\frac{n \pi x}{L}) dx
+    $$
+    以及 
+    $$
+     \int_0^L x^2 \sin(\frac{n \pi x}{L}) dx
+    $$
+
+    $$
+    \int_0^L x \cos(\frac{n \pi x}{L}) dx
+    $$
+    以及 
+    $$
+     \int_0^L x^2 \cos(\frac{n \pi x}{L}) dx
+    $$
+
+    $$
+    \int_0^L e^x \sin(\frac{n \pi x}{L}) dx
+    $$
+    
+    
+\end{solution}
+
+
+
+
 
 \section*{Question 2}
 Compute the multidimensional sine Fourier series of $f(x, y) = xy$, $x, y \in [-\pi, \pi] \times [-\pi, \pi]$.
@@ -232,6 +477,115 @@ u(x, y, 0) &= x(\pi - x)y, \quad u_t(x, y, 0) = 0, \quad x, y \in [0, \pi] \time
 \[
 u(x, y, t) = -\sum_{m=1}^{\infty} \frac{\pi^2 (-1)^m}{3m} \cos(mt) \sin(my) + \sum_{n,m=1}^{\infty} \frac{4(1 + (-1)^n)(-1)^m}{n^2 m} \cos\left( \sqrt{n^2 + m^2} t \right) \cos(nx) \sin(my).
 \]
+
+
+
+\chapter{Mid Review 1}
+\section*{Question 1}
+Redo all the problems in HW1 - HW4.
+
+\section*{Question 2}
+Classify each PDE as parabolic, hyperbolic, or elliptic:
+\begin{enumerate}
+    \item $u_{tt} + 3u_{xx} = u$
+    \item $u_{xx} + 2u_{xy} - 4u_{yy} = u_x$
+    \item $u_x = 2u_{yy}$
+    \item $u_{xx} + x^3 u_{yy} = 0$
+\end{enumerate}
+
+\section*{Question 3}
+Prove the following facts:
+\begin{enumerate}
+    \item Orthogonality of Fourier, complex Fourier, cosine Fourier, and sine Fourier series.
+    \item Parseval’s theorem for Fourier, complex Fourier, cosine Fourier, and sine Fourier series.
+    \item The following operator is symmetric: $A = -\frac{d^2}{dx^2}$.
+    \item Odd functions only have sine terms, and even functions only have cosine terms.
+\end{enumerate}
+
+\section*{Question 4}
+Compute the Fourier, complex Fourier, cosine Fourier, and sine Fourier series for the following functions (the domain for the first two is $[-\pi, \pi]$, and for the last two, $[0, \pi]$):
+\begin{enumerate}
+    \item $f(x) = \begin{cases} 
+        1 & -\pi < x < 0 \\
+        3 & 0 < x < \pi 
+    \end{cases}$
+    \item $f(x) = \begin{cases} 
+        1 & 0 < x < h \\
+        0 & h < x < \pi \text{ or } -\pi < x < 0
+    \end{cases}$
+\end{enumerate}
+
+\section*{Question 5}
+Solve the following problems:
+\begin{enumerate}
+    \item Sketch the graph on $[-\pi, \pi]$ of the Fourier, complex Fourier, cosine Fourier, and sine Fourier series of Question 4.1.
+    \item Use Parseval’s theorem to show that $\sigma_N^2 = O\left(\frac{1}{\sqrt{N}}\right)$ for the Fourier series of Question 4.1.
+\end{enumerate}
+
+\section*{Question 6}
+Solve the following differential equations:
+\begin{enumerate}
+    \item $y' = y - x$, $y(1) = 2$
+    \item $y' = 4y + 3x$, $y(0) = -1$
+    \item $y' = 2xy + x$, $y(0) = 3$
+    \item $y'' + 3y' + 2y = 0$, $y(0) = 0$, $y'(0) = 1$
+    \item $y'' + 2y' + 2y = 0$ (in terms of cosine and sine)
+    \item Reduce $y'' + y' + (\lambda x - 1)y = 0$ to the Sturm-Liouville form.
+\end{enumerate}
+
+\section*{Question 7}
+Using separation of variables, solve the following PDEs:
+\begin{enumerate}
+    \item Solve the initial-value problem $u_t = K u_{zz}$ ($K > 0$) for $t > 0$, $0 < z < L$, with the boundary conditions $u_z(0, t) = u_z(L, t) = 0$ and the initial condition $u(z, 0) = \frac{1}{2}\cos\frac{\pi z}{L} + \cos^2\frac{\pi z}{L}$, $0 < z < L$.
+    \item Find the separated solutions $u(x, y)$ of Laplace's equation $u_{xx} + u_{yy} = 0$ in the region $0 < x < L$, $y > 0$, that satisfy the boundary conditions $u(0, y) = 0$, $u(L, y) = 0$, $u(x, 0) = 1$, and the boundedness condition $|u(x, y)| \leq M$ for $y > 0$, where $M$ is a constant independent of $(x, y)$.
+\end{enumerate}
+
+
+
+\chapter{Mid Review 2}
+
+\section*{Question 1}
+Redo all the problems in HW5 - HW7.
+
+\section*{Question 2}
+Prove the following facts:
+\begin{enumerate}
+    \item The following operator is symmetric:
+    \begin{enumerate}
+        \item $A = -\frac{d^2}{dx^2}$, with $\text{Dom}(A) = \{f(x) : f(0) = f(1) = 0\}$.
+        \item $A\phi = -\frac{1}{\rho(x)}\left[(s(x)\phi'(x))' + [\lambda \rho(x) - q(x)]\phi(x)\right]$, with $\text{Dom}(A) = \{\phi(x) : \phi(a)\cos \alpha - L\phi'(a)\sin \alpha = 0, \phi(b)\cos \beta + L\phi'(b)\sin \beta = 0\}$.
+    \end{enumerate}
+    \item If $A$ is symmetric, then its eigenvalues are real and its eigenvectors are orthogonal.
+    \item If $f(x) = g(y)$, then they must be a constant independent of $x$ and $y$.
+    \item On $x = 0$ part of the domain $\{(x, y) : x \geq 0, 0 \leq y \leq 1\}$, the boundary condition $a(x, y)n \cdot \nabla u + b(x, y)u = c(x, y)$ can be reduced to $-a(0, y)u_x + b(0, y)u = c(0, y)$.
+\end{enumerate}
+
+\section*{Question 3}
+Find the solution of the following heat equations:
+\begin{enumerate}
+    \item Find the solution and the asymptotics as $t \to \infty$ for the problem:
+    \[
+    u_t = K u_{zz}, \quad 0 < z < L, \ t > 0, \quad u(0, t) = T, \ u_z(L, t) = \Phi, \ u(z, 0) = \Phi_0 z.
+    \]
+    \item Find the solution of:
+    \[
+    u_t = u_{xx} + \frac{1}{2}e^{-t}, \quad 0 < x < 1, \ t > 0, \quad u(0, t) = \frac{1}{2}e^{-t}, \ u(1, t) = \frac{1}{2}e^{-t}, \quad u(x, 0) = \frac{3}{2}.
+    \]
+\end{enumerate}
+
+\section*{Question 4}
+Solve the following wave equations:
+\begin{enumerate}
+    \item Solve the equation $u_{tt} = c^2 u_{xx}$, $0 < x < 1$, $t > 0$, with $u(0, t) = u(1, t) = 0$, $u(x, 0) = x$, $u_t(x, 0) = 0$.
+    \item Solve the equation $u_{tt} = c^2 u_{xx}$, $0 < x < 1$, $t > 0$, with $u(0, t) = 0$, $u_z(1, t) = 0$, $u(x, 0) = x$, $u_t(x, 0) = 0$.
+\end{enumerate}
+
+\section*{Question 5}
+Find the solution of the 2D homogeneous wave equation using separation of variables:
+\[
+u_{tt} = u_{xx} + u_{yy}, \ t > 0, \ (x, y) \in [0, \pi] \times [0, \pi],
+\]
+with the boundary conditions $u(0, y, t) = 0$, $u(\pi, y, t) = 0$, $u(x, 0, t) = 0$, $u(x, \pi, t) = 0$, and the initial conditions $u(x, y, 0) = 0$, $u_t(x, y, 0) = xy$.
 
 
 \end{document}
