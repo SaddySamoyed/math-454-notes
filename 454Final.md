@@ -24,11 +24,15 @@
 
 ## 10 Fourier Transform
 
-1. Fourier transform
-2. diffusion eq with aborsion coeff
-3. method of image
-4. wave eq solved by Alembert's formula
-5. method of Green's function
+1. **Fourier transform**
+2. **diffusion eq with aborsion coeff**
+3. **method of image**
+4. **wave eq solved by Alembert's formula**
+5. **method of Green's function**
+
+
+
+
 
 
 
